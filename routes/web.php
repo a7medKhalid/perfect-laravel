@@ -13,6 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// simple blade
+Route::resource('articles', \App\Http\Controllers\Web\ArticleController::class)->middleware('auth');
+
+//livewire
+
+Route::group(['middleware' => 'auth', 'prefix' => 'spa'], function () {
+   Route::get('articles/create', App\Livewire\Article\Create::class)->name('spa.articles.create');
 });

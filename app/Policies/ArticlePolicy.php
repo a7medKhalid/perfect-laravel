@@ -6,11 +6,9 @@ use App\Models\User;
 
 class ArticlePolicy
 {
-    /**
-     * Create a new policy instance.
-     */
-    public function __construct()
+
+    public function create(User $user)
     {
-        //
+        return $user->email_verified_at !== null;
     }
 }
